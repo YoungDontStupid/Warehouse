@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "iGxGkjqx0kk=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\dena2_fau2\\OneDrive\\Рабочий стол\\Warehouse-management\\warehouse-management-applicationtests\\warehouse-management-applicationtests.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\dena2_fau2\\.nuget\\packages\\nunit\\4.1.0\\nunit.4.1.0.nupkg.sha512"
+  ],
+  "logs": []
+}

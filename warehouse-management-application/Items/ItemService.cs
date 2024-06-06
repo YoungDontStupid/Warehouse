@@ -11,35 +11,39 @@ public class ItemService(IRepository<Item> repository) : IServise
     public async Task<IEnumerable<ItemDTO>> GetItemsAsync(CancellationToken cancellationToken = default) =>
         (await Repository.Get(cancellationToken)).Select(x => (ItemDTO)x);
 
-    public async Task RegisterOrUpdateItemsAsync(IEnumerable<ItemDTO> items, CancellationToken cancellationToken = default)
+    public async Task AddItemAsync(string newItem, CancellationToken cancellationToken = default)
     {
-        var newItems = from item in items
-                         where item.Id is null
-                         select new Item()
-                         {
-                             Description = item.Description,
-                             Name = item.Name,
-                             ExpirationDate = item.ExpirationDate,
-                             Temperature = item.Temperature,
-                             Price = item.Price
-                         };
+        var potentialCopies = await Repository.GetWithoutTracking(x => x.Name.Equals(newItem, StringComparison.CurrentCultureIgnoreCase), cancellationToken);
+        if (potentialCopies.Any())
+            throw new SimilarItemTitleException(newItem);
+    }
 
-        var repo = await Repository.Get(cancellationToken);
-        var newOldItemCouples = from item in (from item in items where item.Id is not null select item)
-                                  join repDevice in repo on item.Id equals repDevice.Id
-                                  select (item, repDevice);
-
-        foreach (var (updatedItem, oldItem) in newOldItemCouples)
+    public async Task CreateOrUpdateItemAsync(ItemDTO item, CancellationToken cancellationToken = default)
+    {
+        Item localitem;
+        if (item.Id is not null)
         {
-            oldItem.Name = updatedItem.Name;
-            oldItem.ExpirationDate = updatedItem.ExpirationDate;
-            oldItem.Temperature = updatedItem.Temperature;
-            oldItem.Price = updatedItem.Price;
-            
+            localitem = (await Repository.Get(x => x.Id.Value == item.Id.Value, cancellationToken)).FirstOrDefault() ??
+                throw new ItemNotFoundException(item.Id.Value);
+            localitem.Name = item.Name;
+            localitem.Description = item.Description;
+            localitem.Price = item.Price;
+            localitem.Temperature = item.Temperature;
+            localitem.ExpirationDate = item.ExpirationDate;
         }
+        else
+            localitem = new()
+            {
+                Name = item.Name,
+                Description = item.Description,
+                Price = item.Price,
+                Temperature = item.Temperature,
+                ExpirationDate = item.ExpirationDate
+            };
 
-        // todo: validation object
-        await Repository.AddRange(newItems, cancellationToken);
-        await Repository.UpdateRange(repo, cancellationToken);
+        if (localitem.Id is null)
+            await Repository.Add(localitem, cancellationToken);
+        else
+            await Repository.Update(localitem, cancellationToken);
     }
 }

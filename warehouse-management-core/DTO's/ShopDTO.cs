@@ -12,5 +12,6 @@ public class ShopDTO
         Id = other.Id,
         Name = other.Name,
         Capacity = other.Capacity,
+
     };
 }

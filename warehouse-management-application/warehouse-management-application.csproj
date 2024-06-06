@@ -9,11 +9,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Storages\" />
-    <Folder Include="Shop\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\warehouse-management-core\warehouse-management-core.csproj" />
   </ItemGroup>
 

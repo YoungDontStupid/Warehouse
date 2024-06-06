@@ -8,4 +8,6 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = warehouse_management_application
-build_property.ProjectDir = C:\Users\student-234\Desktop\Warehouse-management\warehouse-management-application\
+build_property.ProjectDir = C:\Users\dena2_fau2\OneDrive\Рабочий стол\Warehouse-management\warehouse-management-application\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 

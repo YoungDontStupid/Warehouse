@@ -1,8 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "bjmfwoqIhUHEzrpJ70ijR/kuk4w/I7wyDNDOzhUPF9F5gnVxZQSax5ZfWqQl4ypaJqvp5VFNkpy6g52r3vsGmw==",
+  "dgSpecHash": "dld2U+1xDM4=",
   "success": true,
-  "projectFilePath": "C:\\Users\\student-234\\Desktop\\Warehouse-management\\warehouse-management-application\\warehouse-management-application.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "C:\\Users\\dena2_fau2\\OneDrive\\Рабочий стол\\Warehouse-management\\warehouse-management-application\\warehouse-management-application.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\dena2_fau2\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\7.0.19\\microsoft.windowsdesktop.app.ref.7.0.19.nupkg.sha512",
+    "C:\\Users\\dena2_fau2\\.nuget\\packages\\microsoft.netcore.app.ref\\7.0.19\\microsoft.netcore.app.ref.7.0.19.nupkg.sha512",
+    "C:\\Users\\dena2_fau2\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\7.0.19\\microsoft.aspnetcore.app.ref.7.0.19.nupkg.sha512"
+  ],
   "logs": []
 }

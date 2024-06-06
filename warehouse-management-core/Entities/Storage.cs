@@ -9,6 +9,8 @@ public class Storage : IEntity
 
     public int Temperature { get; set; }
 
+   
+    public virtual ICollection<Item> Items { get; set; }
     public virtual ICollection<Shop> Shops { get; set; }
     public virtual ICollection<Employee> Employees { get; set; }
 }

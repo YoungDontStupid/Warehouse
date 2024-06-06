@@ -2,4 +2,3 @@
 global using warehouse_management_core.Entities;
 global using warehouse_management_core;
 global using warehouse_management_core.Exceptions;
-global using warehouse_management_core.DTOs;

@@ -6,6 +6,7 @@ public class Shop : IEntity
     public string Name { get; set; }
     public int Capacity { get; set; }
 
+    public virtual ICollection<Item> Items { get; set; }
     public virtual ICollection<Employee> Employees { get; set; }
     public virtual ICollection<Storage> Storages { get; set; }
 }
