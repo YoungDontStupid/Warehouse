@@ -15,11 +15,34 @@ public static class ItemEndPoint
 
     public async static Task<IResult> CreateItem(ItemDTO item, ItemService service, HttpContext context)
     {
-        var items = await;
+        try
+        {
+            await service.CreatePortfolio(portfolio.Name);
+            return Results.Created($"api/items/{item.Id}", item);
+        }
+        catch (SimilarItemNameException ex)
+        {
+            logger.LogError(ex, "Failed to create portfolio due to similar name.");
+            return Results.BadRequest($"A portfolio with the name '{item.Name}' already exists.");
+        }
+        catch (Exception ex)
+        {
+            logger.LogError(ex, "An error occurred while creating the portfolio.");
+            return Results.StatusCode(StatusCodes.Status500InternalServerError);
+        }
     }
     public async static Task<IResult> GetItem(ItemDTO item, ItemService service, HttpContext context)
     {
-
+        try
+        {
+            var items = await service.GetItems();
+            return Results.Ok(items);
+        }
+        catch (Exception ex)
+        {
+            logger.LogError(ex, "An error occurred while getting the portfolios.");
+            return Results.StatusCode(StatusCodes.Status500InternalServerError);
+        }
     }
-
+} 
 }
